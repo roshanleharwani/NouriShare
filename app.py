@@ -5,6 +5,7 @@ from flask_mail import Mail, Message
 import os
 import json
 import secrets
+from bson import ObjectId
 
 
 with open("config.json") as file:
@@ -43,6 +44,11 @@ def home():
     if request.method == "POST":
         name = request.form["name"]
         password = request.form["password"]
+        if name == "admin":
+            admin = db.users.find_one({"name": "admin"})
+            if bcrypt.check_password_hash(admin.get("password"), password):
+                session["user"] = "admin"
+                return redirect("/admin")
         user = db.users.find_one({"name": name})
         if user:
             if bcrypt.check_password_hash(user.get("password"), password):
@@ -154,6 +160,50 @@ def reset_password_request():
     return render_template("recover.html")
 
 
+@app.route("/donate", methods=["GET", "POST"])
+def donate():
+    if "user" in session:
+        if request.method == "POST":
+            item_names = request.form.getlist("item-name[]")
+            quantities = request.form.getlist("quantity[]")
+            expiry_dates = request.form.getlist("expiry-date[]")
+
+            # Insert donation request into MongoDB
+            db.donations.insert_one(
+                {
+                    "user": session["user"],
+                    "items": item_names,
+                    "quantities": quantities,
+                    "expiryDates": expiry_dates,
+                    "status": "pending",
+                }
+            )
+
+            flash("Pick-Up request has been made successfully")
+            return redirect(
+                "/donate"
+            )  # Redirect to the donation page after successful submission
+
+        return render_template("client.html")  # Render the donation form template
+
+    return redirect("/")
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        email = request.form.get("email")
+        subject = request.form.get("subject")
+        msg = request.form.get("message")
+        message = Message(subject=subject, recipients=[params["email"]])
+        message.body = f"{msg}\n\nEmail: {email}"
+        mail.send(message)
+        flash("Message sent successfully")
+        return render_template("index.html")
+    else:
+        return render_template("index.html")
+
+
 @app.route("/donation", methods=["GET", "POST"])
 def donation():
     if request.method == "POST":
@@ -167,6 +217,64 @@ def donation():
         mail.send(msg)
         flash("Donation Amount Received")
     return render_template("donation.html")
+
+
+@app.route("/approve/<request_id>")
+def approve_request(request_id):
+    if session.get("user") == "admin":
+        db.donations.update_one(
+            {"_id": ObjectId(request_id)}, {"$set": {"status": "approved"}}
+        )
+        flash("Request approved successfully", "success")
+    return redirect("/admin")
+
+
+@app.route("/reject/<request_id>")
+def reject_request(request_id):
+    if session.get("user") == "admin":
+        db.donations.update_one(
+            {"_id": ObjectId(request_id)}, {"$set": {"status": "rejected"}}
+        )
+        flash("Request rejected successfully", "danger")
+    return redirect("/admin")
+
+
+@app.route("/delete/<request_id>")
+def delete_request(request_id):
+    if session.get("user") == "admin":
+        # Convert the request_id to ObjectId
+        obj_id = ObjectId(request_id)
+        # Delete the request from the database
+        result = db.donations.delete_one({"_id": obj_id})
+        if result.deleted_count == 1:
+            flash("Request deleted successfully", "success")
+        else:
+            flash("Request not found or already deleted", "warning")
+    return redirect("/admin")
+
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    if session.get("user") == "admin":
+        pending_requests = []
+        approved_requests = []
+
+        for doc in db.donations.find():
+            if doc.get("status") == "approved":
+                approved_requests.append(doc)
+            else:
+                pending_requests.append(doc)
+
+        return render_template(
+            "admin.html", pending=pending_requests, approved=approved_requests
+        )
+
+    return redirect("/")  # Redirect to login page if user is not admin or not logged in
+
+
+@app.route("/ways_to_reduce_waste")
+def learn():
+    return render_template("education.html")
 
 
 if __name__ == "__main__":

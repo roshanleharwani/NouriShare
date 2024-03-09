@@ -20,7 +20,7 @@
             <a href="#" class="block py-2 px-4 hover:bg-gray-700">Dashboard</a>
             <a href="#" class="block py-2 px-4 hover:bg-gray-700">Pending Requests</a>
             <a href="#" class="block py-2 px-4 hover:bg-gray-700">Approved Requests</a>
-            <a href="#" class="block py-2 px-4 hover:bg-gray-700">Logout</a>
+            <a href="/logout" class="block py-2 px-4 hover:bg-gray-700">Logout</a>
         </nav>
     </div>
 
@@ -40,32 +40,42 @@
                 <h2 class="text-2xl font-semibold mb-4">Pending Requests</h2>
                 <!-- List of pending requests goes here -->
                 <ul>
+                    {% for request in pending %}
                     <li class="flex items-center justify-between bg-gray-100 rounded-md p-4 mb-4">
                         <div class="flex flex-col">
-                            <p class="text-gray-800">Request #1</p>
-                            <span class="text-sm text-gray-500">Lorem ipsum dolor sit amet</span>
+                            <p class="text-gray-800">{{ request['user'] }}</p>
+                            <span class="text-sm text-gray-500">{{ request['items'] }}</span>
                         </div>
                         <div class="flex">
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-green-600">Approve</button>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Reject</button>
+                            <a href="/approve/{{ request['_id'] }}"><button class="bg-green-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-green-600">Approve</button></a>
+                            <a href="/delete/{{ request['_id'] }}"><button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Reject</button></a>
                         </div>
                     </li>
-                    <li class="flex items-center justify-between bg-gray-100 rounded-md p-4 mb-4">
-                        <div class="flex flex-col">
-                            <p class="text-gray-800">Request #2</p>
-                            <span class="text-sm text-gray-500">Lorem ipsum dolor sit amet</span>
-                        </div>
-                        <div class="flex">
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-green-600">Approve</button>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Reject</button>
-                        </div>
-                    </li>
-                    <!-- More pending requests -->
+                    {% endfor %}
                 </ul>
             </div>
         </div>
-    </div>
-
+        
+        <div class="bg-white shadow-md rounded-lg overflow-hidden mt-8">
+            <div class="p-6">
+                <h2 class="text-2xl font-semibold mb-4">Approved Requests</h2>
+                <!-- List of approved requests goes here -->
+                <ul>
+                    {% for request in approved %}
+                    <li class="flex items-center justify-between bg-gray-100 rounded-md p-4 mb-4">
+                        <div class="flex flex-col">
+                            <p class="text-gray-800">{{ request['user'] }}</p>
+                            <span class="text-sm text-gray-500">{{ request['items'] }}</span>
+                        </div>
+                        <div class="flex">
+                            <a href="/reject/{{ request['_id'] }}"><button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Reject</button></a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
     <script>
         // Data for food donated chart
         var foodDonatedData = {
