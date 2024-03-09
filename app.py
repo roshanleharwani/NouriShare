@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, flash, session, url
 from pymongo import MongoClient
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail, Message
-import os
 import json
 import secrets
 from bson import ObjectId
@@ -105,20 +104,28 @@ def logout():
     return redirect("/")
 
 
+from flask import render_template
+
+
 @app.route("/reset_password/<token>", methods=["GET", "POST"])
 def reset_password(token):
     user = db.users.find_one({"reset_token": token})
     if user:
         if request.method == "POST":
             new_password = request.form["password"]
-            confirmpassword = request.form["password"]
-            if confirmpassword == new_password:
-                # Update user's password and remove the reset token
+            confirm_password = request.form[
+                "confirm_password"
+            ]  # Changed variable name to confirm_password
+            if confirm_password == new_password:
+                # Hash the new password using bcrypt
+                hashed_password = bcrypt.hashpw(
+                    new_password.encode("utf-8"), bcrypt.gensalt()
+                )
                 db.users.update_one(
                     {"reset_token": token},
                     {
                         "$set": {
-                            "password": bcrypt.generate_password_hash(new_password),
+                            "password": hashed_password,  # Store the hashed password
                             "reset_token": None,
                         }
                     },
@@ -128,7 +135,8 @@ def reset_password(token):
                 )
                 return redirect("/")
             else:
-                render_template("reset_password_request.html", token=token)
+                # Added return statement to render template in case of password mismatch
+                return render_template("reset_password_request.html", token=token)
         return render_template("reset_password_request.html", token=token)
     else:
         flash("Invalid or expired reset token.")
@@ -160,6 +168,11 @@ def reset_password_request():
     return render_template("recover.html")
 
 
+@app.route("/join")
+def join():
+    return render_template("joinus.html")
+
+
 @app.route("/donate", methods=["GET", "POST"])
 def donate():
     if "user" in session:
@@ -167,8 +180,6 @@ def donate():
             item_names = request.form.getlist("item-name[]")
             quantities = request.form.getlist("quantity[]")
             expiry_dates = request.form.getlist("expiry-date[]")
-
-            # Insert donation request into MongoDB
             db.donations.insert_one(
                 {
                     "user": session["user"],
@@ -180,11 +191,9 @@ def donate():
             )
 
             flash("Pick-Up request has been made successfully")
-            return redirect(
-                "/donate"
-            )  # Redirect to the donation page after successful submission
+            return redirect("/donate")
 
-        return render_template("client.html")  # Render the donation form template
+        return render_template("client.html")
 
     return redirect("/")
 
@@ -199,7 +208,7 @@ def contact():
         message.body = f"{msg}\n\nEmail: {email}"
         mail.send(message)
         flash("Message sent successfully")
-        return render_template("index.html")
+        return redirect("/")
     else:
         return render_template("index.html")
 
@@ -242,9 +251,7 @@ def reject_request(request_id):
 @app.route("/delete/<request_id>")
 def delete_request(request_id):
     if session.get("user") == "admin":
-        # Convert the request_id to ObjectId
         obj_id = ObjectId(request_id)
-        # Delete the request from the database
         result = db.donations.delete_one({"_id": obj_id})
         if result.deleted_count == 1:
             flash("Request deleted successfully", "success")
@@ -269,7 +276,7 @@ def admin():
             "admin.html", pending=pending_requests, approved=approved_requests
         )
 
-    return redirect("/")  # Redirect to login page if user is not admin or not logged in
+    return redirect("/")
 
 
 @app.route("/ways_to_reduce_waste")

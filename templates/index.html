@@ -39,6 +39,19 @@
               </div>
             </div>
           </header>
+          {%  if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+        <div class="flex items-center p-4 mb-4 text-xl text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+          <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+          </svg>
+          <span class="sr-only">Info</span>
+          <div>
+            <span class="font-medium">{{ message }}</span> 
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
           <div class="bg-cover shadow-3xl flex-grow flex items-center justify-center">
             <div class="max-w-xs">
               <form action="/" method="post" class="bg-rgb-17-24-39 shadow-3xl rounded px-8 pt-6 pb-8 mb-4">
@@ -150,7 +163,7 @@
                       <p class="text-gray-700">Support us financially by making a donation. Every contribution counts.</p>
                     </div>
                     <div class="px-6 pt-4 pb-2 bg-gray-100">
-                      <a href="#" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Donate Now</a>
+                      <a href="/donation" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Donate Now</a>
                     </div>
                   </div>
                 </div>
@@ -162,7 +175,7 @@
                       <p class="text-gray-700">Become a volunteer and help us with our projects and initiatives.</p>
                     </div>
                     <div class="px-6 pt-4 pb-2 bg-gray-100">
-                      <a href="#" class="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Join Us</a>
+                      <a href="/j" class="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Join Us</a>
                     </div>
                   </div>
                 </div>
@@ -174,7 +187,7 @@
                       <p class="text-gray-700">Help us reach more people by sharing our mission and activities on social media.</p>
                     </div>
                     <div class="px-6 pt-4 pb-2 bg-gray-100">
-                      <a href="#" class="block w-full text-center bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Share Now</a>
+                      <a href="#description" class="block w-full text-center bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Share Now</a>
                     </div>
                   </div>
                 </div>
