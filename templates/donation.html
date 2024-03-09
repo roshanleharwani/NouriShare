@@ -33,21 +33,22 @@
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
         <div class="px-6 py-4">
-          <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">Support for cause</h1>
+          <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">Support For Cause</h1>
+          <form action="/donation" method="post" id="signupForm" class="space-y-4">
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Full Name</label>
-            <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John Doe">
+            <input name="name" id="name" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John Doe">
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-            <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="john@example.com">
+            <input id="email" name="email" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="john@example.com">
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="amount">Donation Amount ($)</label>
-            <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="amount" type="number" placeholder="50">
+            <input id="amount" name="amount" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="amount" type="number" placeholder="50">
           </div>
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Donate Now</button>
-        </div>
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Donate Now</button>
+        </div></form>
       </div>
     </div>
   </div>
