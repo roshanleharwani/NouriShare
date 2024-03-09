@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .box {
+          border: 1px solid #ced4da;
+          border-radius: 0.25rem;
+          padding: 20px;
+        }
+      </style>
+</head>
+<body>
+    <header class="text-gray-400 bg-gray-900 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+            <img src="/static/agronomy.png" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-white rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </img>
+            <span class="ml-3 text-xl">NouriShare</span>
+          </a>
+        </div>
+      </header>
+      <hr>
+      <section class="text-gray-400 bg-gray-900 body-font">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -m-4">
+            <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+              <div class="h-full text-center">
+                <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-800 bg-gray-800 bg-opacity-10" src="/static/food-donation.png">
+                <h2 class="text-white font-medium title-font tracking-wider text-xl">Donations Made</h2>
+                <br>
+                <div class="counter text-5xl text-white" data-target="5">0</div>
+              </div>
+            </div>
+            <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+              <div class="h-full text-center">
+                <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-800 bg-gray-800 bg-opacity-10" src="/static/feedback.png">
+                <h2 class="text-white font-medium title-font tracking-wider text-xl">People Fed</h2>
+                <br>
+                <div class="counter text-5xl text-white" data-target="12">0</div>
+              </div>
+            </div>
+            <div class="lg:w-1/3 lg:mb-0 p-4">
+              <div class="h-full text-center">
+                <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-800 bg-gray-800 bg-opacity-10" src="/static//vegetarian.png">
+                <h2 class="text-white font-medium title-font tracking-wider text-xl">Food Saved (Kgs)</h2>
+                <br>
+                <div class="counter text-5xl text-white" data-target="8">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="text-gray-400 bg-gray-900 body-font">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="text-center mb-20">
+            <h1 class="sm:text-3xl text-5xl font-semibold title-font text-white mb-4">Make A New Donation</h1>
+            <div class="bg-gray-900 py-5">
+                <div class="container mt-5">
+                  <div class="box">
+                    <h2 class="text-center mb-4">Donation Form</h2>
+                    
+                    <form id="donation-form">
+                      <div class="text-center mb-4">
+                        <button type="button" class="btn btn-primary mb-2" id="add-item-btn">Add Item</button>
+                      </div>
+                      <div class="form-row item-row" style="display: none;">
+                        <div class="form-group col-md-4">
+                          <label for="item-name">Item Name</label>
+                          <input type="text" class="form-control" name="item-name[]" placeholder="Item Name">
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="quantity">Quantity</label>
+                          <input type="number" class="form-control" name="quantity[]" placeholder="Quantity">
+                        </div>
+                        <div class="form-group col-md-3">
+                          <label for="expiry-date">Expiry Date</label>
+                          <input type="date" class="form-control" name="expiry-date[]">
+                        </div>
+                        <div class="form-group col-md-1">
+                          <button type="button" class="btn btn-danger remove-item-btn">&times;</button>
+                        </div>
+                      </div>
+                      
+                      <div class="text-center mb-4">
+                        <button type="submit" class="btn btn-success">Donate</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <button class="flex mx-auto mt-16 text-white bg-gray-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-500 rounded text-lg">Button</button>
+        </div>
+      </section>
+      <section class="text-gray-400 bg-gray-900 body-font">
+        <div class="container px-5 py-24 mx-auto flex flex-wrap">
+          <div class="flex w-full mb-20 flex-wrap">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font text-white lg:w-1/3 lg:mb-0 mb-4">Master Cleanse Reliac Heirloom</h1>
+            <p class="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom.</p>
+          </div>
+          <div class="flex flex-wrap md:-m-2 -m-1">
+            <div class="flex flex-wrap w-1/2">
+              <div class="md:p-2 p-1 w-1/2">
+                <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://dummyimage.com/500x300">
+              </div>
+              <div class="md:p-2 p-1 w-1/2">
+                <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://dummyimage.com/501x301">
+              </div>
+              <div class="md:p-2 p-1 w-full">
+                <img alt="gallery" class="w-full h-full object-cover object-center block" src="https://dummyimage.com/600x360">
+              </div>
+            </div>
+            <div class="flex flex-wrap w-1/2">
+              <div class="md:p-2 p-1 w-full">
+                <img alt="gallery" class="w-full h-full object-cover object-center block" src="https://dummyimage.com/601x361">
+              </div>
+              <div class="md:p-2 p-1 w-1/2">
+                <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://dummyimage.com/502x302">
+              </div>
+              <div class="md:p-2 p-1 w-1/2">
+                <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://dummyimage.com/503x303">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+
+      <footer class="text-gray-400 bg-gray-900  body-font">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+            <img src="/static/agronomy.png" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-white rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </img>
+            <span class="ml-3 text-xl">NouriShare</span>
+          </a>
+          <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2024 NouriShare —
+            
+          </p>
+          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <a class="text-gray-400">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-400">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-400">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-400">
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                <circle cx="4" cy="4" r="2" stroke="none"></circle>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </footer>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#add-item-btn').click(function() {
+    $('.item-row:last').clone().appendTo('#donation-form').show();
+    $('.remove-item-btn').show();
+  });
+  
+  $('#donation-form').on('click', '.remove-item-btn', function() {
+    $(this).closest('.item-row').remove();
+    if ($('.item-row').length === 1) {
+      $('.remove-item-btn').hide();
+    }
+  });
+});
+</script>
+      <script>
+        // Function to animate the counter
+function animateCounter(counter, target) {
+const increment = Math.ceil(target / 150); // Adjust the speed of the animation by changing the value (100 here)
+
+let currentCount = 0;
+const updateCounter = () => {
+currentCount += increment;
+if (currentCount >= target) {
+  clearInterval(counterUpdate);
+  currentCount = target;
+}
+counter.textContent = currentCount;
+};
+
+const counterUpdate = setInterval(updateCounter, 20); // Adjust the speed of the animation by changing the value (10 here)
+}
+
+// Run the counter animation on page load
+document.addEventListener('DOMContentLoaded', () => {
+const counters = document.querySelectorAll('.counter');
+counters.forEach(counter => {
+const target = parseInt(counter.getAttribute('data-target'));
+animateCounter(counter, target);
+});
+});
+
+    </script>
+</body>
+</html>

@@ -7,7 +7,6 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
         <style>
             .bg-cover {
               background-image: url('/static/banner.jpg');
@@ -72,17 +71,47 @@
               <div class="text-center lg:w-2/3 w-full">
                 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">What do we do?
                 </h1>
-                <p class="leading-relaxed mb-8">What do we do?
+                <p class="leading-relaxed text-xl mb-8">What do we do?
 
                     We fight food waste by connecting the dots. Our platform creates a marketplace where restaurants and stores with surplus food can donate it to food banks, individuals, and businesses. This reduces waste and saves money.  Real-time tracking ensures food gets picked up fresh, and educational content empowers everyone to use food efficiently. Together, let's make a dent in food waste!</p>
                 <div class="flex justify-center">
-                  <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
-                  <button class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">Button</button>
+                  
                 </div>
               </div>
             </div>
           </section>
           <br>
+          <section class="text-gray-400 bg-gray-900 body-font">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-wrap -m-4">
+                <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+                  <div class="h-full text-center">
+                    <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-800 bg-gray-800 bg-opacity-10" src="/static/food-donation.png">
+                    <h2 class="text-white font-medium title-font tracking-wider text-xl">Total Donations</h2>
+                    <br>
+                    <div class="counter text-5xl text-white" data-target="1000">0</div>
+                  </div>
+                </div>
+                <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+                  <div class="h-full text-center">
+                    <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-800 bg-gray-800 bg-opacity-10" src="/static/feedback.png">
+                    <h2 class="text-white font-medium title-font tracking-wider text-xl">People Fed</h2>
+                    <br>
+                    <div class="counter text-5xl text-white" data-target="500">0</div>
+                  </div>
+                </div>
+                <div class="lg:w-1/3 lg:mb-0 p-4">
+                  <div class="h-full text-center">
+                    <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-800 bg-gray-800 bg-opacity-10" src="/static//vegetarian.png">
+                    <h2 class="text-white font-medium title-font tracking-wider text-xl">Food Saved (Kgs)</h2>
+                    <br>
+                    <div class="counter text-5xl text-white" data-target="800">0</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
           <section class="bg-gray-900 dark:bg-gray-900">
             <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-white dark:text-white">Contact Us</h2>
@@ -191,5 +220,33 @@
             </div>
           </footer>
         <script src="" async defer></script>
+        <script>
+            // Function to animate the counter
+function animateCounter(counter, target) {
+  const increment = Math.ceil(target / 150); // Adjust the speed of the animation by changing the value (100 here)
+
+  let currentCount = 0;
+  const updateCounter = () => {
+    currentCount += increment;
+    if (currentCount >= target) {
+      clearInterval(counterUpdate);
+      currentCount = target;
+    }
+    counter.textContent = currentCount;
+  };
+
+  const counterUpdate = setInterval(updateCounter, 20); // Adjust the speed of the animation by changing the value (10 here)
+}
+
+// Run the counter animation on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    const target = parseInt(counter.getAttribute('data-target'));
+    animateCounter(counter, target);
+  });
+});
+
+        </script>
     </body>
 </html>

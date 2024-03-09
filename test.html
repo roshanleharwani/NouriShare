@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donation Form</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .box {
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-gray-900 py-5">
+  <div class="container mt-5">
+    <div class="box">
+      <h2 class="text-center mb-4">Donation Form</h2>
+      
+      <form id="donation-form">
+        <div class="text-center mb-4">
+          <button type="button" class="btn btn-primary mb-2" id="add-item-btn">Add Another Item</button>
+        </div>
+        <div class="form-row item-row" style="display: none;">
+          <div class="form-group col-md-4">
+            <label for="item-name">Item Name</label>
+            <input type="text" class="form-control" name="item-name[]" placeholder="Item Name">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="quantity">Quantity</label>
+            <input type="number" class="form-control" name="quantity[]" placeholder="Quantity">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="expiry-date">Expiry Date</label>
+            <input type="date" class="form-control" name="expiry-date[]">
+          </div>
+          <div class="form-group col-md-1">
+            <button type="button" class="btn btn-danger remove-item-btn">&times;</button>
+          </div>
+        </div>
+        
+        <div class="text-center mb-4">
+          <button type="submit" class="btn btn-success">Donate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#add-item-btn').click(function() {
+    $('.item-row:last').clone().appendTo('#donation-form').show();
+    $('.remove-item-btn').show();
+  });
+  
+  $('#donation-form').on('click', '.remove-item-btn', function() {
+    $(this).closest('.item-row').remove();
+    if ($('.item-row').length === 1) {
+      $('.remove-item-btn').hide();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
