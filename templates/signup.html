@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate Now</title>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+        
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 1rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .blur-background {
+        backdrop-filter: blur(800px); /* Adjust the blur radius value as needed */
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    #contactUsModal {
+        position: fixed;
+        bottom: -10rem;
+        right: -30rem;
+    }
+</style>
+</head>
+<body>
+      
+          <header class="text-gray-400 bg-gray-900 body-font">
+              <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+                
+                <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-white lg:items-center lg:justify-center mb-4 md:mb-0">
+                  <img src="/static/agronomy.png" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-white rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                  </img>
+                  <span class="ml-3 text-xl xl:block lg:hidden">NouriShare</span>
+                </a>
+                <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+                  
+                </div>
+              </div>
+            </header>
+            <div class="flex justify-center items-center h-screen">
+                <div class="bg-white p-8 rounded shadow-3xl w-96 card transform transition-transform">
+                    <h2 class="text-2xl mb-4 text-gray-800 font-semibold">Register Your Restaurant</h2>
+                    <form action="/signup" method="post" id="signupForm" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Restaurant Name</label>
+                            <input type="text" id="name" name="name"
+                                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="email" name="email"
+                                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile</label>
+                            <input type="text" id="phone" name="phone"
+                                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <input type="password" id="password" name="password"
+                                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                            <input type="password" id="confirm_password" name="confirm_password"
+                                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <button type="submit" id="submitButton"
+                                class="w-full bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Sign
+                                Up</button>
+                        </div>
+                    </form>
+                    <p class="text-sm text-gray-500 mt-4">Already have an account? <a href="/" class="text-blue-500 hover:underline">Sign in here</a></p>
+                    <div id="contactUsModal" class="hidden bg-white p-6 rounded absolute transform -translate-x-1/2 -translate-y-1/2 blur-background">
+                        <div class="modal-content">
+                            <a href="/contact"><h3 class="text-lg font-semibold mb-4">Contact Us</h3></a>
+                            <form id="contactForm" class="space-y-4">
+                                <div>
+                                    <label for="issue" class="block text-sm font-medium text-gray-700">Issue</label>
+                                    <textarea id="issue" name="issue" rows="3" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <a href="#" id="contactUsLink" class="text-sm text-gray-500 mt-4 underline">Contact Us</a>
+                </div>
+            </div>
+        <footer class="text-gray-400 bg-gray-900  body-font">
+          <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+            <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+              <img src="/static/agronomy.png" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-white rounded-full" viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </img>
+              <span class="ml-3 text-xl">NouriShare</span>
+            </a>
+            <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2024 NouriShare —
+              
+            </p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+              <a class="text-gray-400">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-gray-400">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-gray-400">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-gray-400">
+                <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                  <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                </svg>
+              </a>
+            </span>
+          </div>
+        </footer>
+<script src="" async defer></script>
+</body>
+</html>
