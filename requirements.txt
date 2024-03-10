@@ -1,0 +1,5 @@
+flask
+flask_pymongo
+flask_bcrypt
+flask_mail
+bson
