@@ -4,7 +4,6 @@ from flask_bcrypt import Bcrypt
 from flask_mail import Mail, Message
 import json
 import secrets
-from bson import ObjectId
 
 
 with open("config.json") as file:
